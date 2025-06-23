@@ -14,7 +14,7 @@ def process_video(in_path: str, out_path: str) -> None:
     out_path : str
         Path to the output video.
     """
-    model = YOLO('yolo11n.pt')
+    model = YOLO('yolo12n.pt')
     
     cap = cv2.VideoCapture(in_path)
     if not cap.isOpened():
