@@ -6,7 +6,7 @@
 ## Description
 
 This repository contains the implementation of a function to detect people in the given video.
-With the function itself, there is a simple example of its usage.
+With the function itself, there is a main program to run with customized input and output.
 
 ## Installation
 
@@ -19,5 +19,5 @@ pip install -r requirements.txt
 ## Usage
 
 ```bash
-python3 main.py
+python3 main.py <path_to_video> <path_to_output_video>
 ```
