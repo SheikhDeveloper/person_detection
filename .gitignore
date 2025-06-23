@@ -15,3 +15,4 @@
 *.doc
 *.docx
 *.pdf
+__pycache__
