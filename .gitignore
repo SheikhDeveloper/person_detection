@@ -1,0 +1,17 @@
+*.mp4
+*.pt
+*.zip
+*.tar
+*.tar.gz
+*.tar.bz2
+*.tar.xz
+*.tar.lzma
+*.tar.zst
+*.tar.gz
+*.tar.lz
+*.tar.zstd
+*.tar.zst
+*.tar.zstd
+*.doc
+*.docx
+*.pdf
