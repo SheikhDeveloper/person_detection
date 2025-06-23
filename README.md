@@ -1,10 +1,7 @@
 # Person detection in the video
 
-[![Python3](https://img.shields.io/badge/Python-3-blue)](https://www.python.org/downloads/)
-
-[![OpenCV](https://img.shields.io/badge/OpenCV-4.5-blue)](https://opencv.org/)
-
-[![Ultralytics](https://img.shields.io/badge/Ultralytics-8.3.0-blue)](https://github.com/ultralytics/)
+[![Python3](https://img.shields.io/badge/Python-3.9-blue)](https://www.python.org/downloads/) [![OpenCV](https://img.shields.io/badge/OpenCV-4.5-blue)](https://opencv.org/)
+[![Ultralytics](https://img.shields.io/badge/Ultralytics-8.3.0-blue)](https://github.com/ultralytics/) [![Numpy](https://img.shields.io/badge/Numpy-1.26.4-blue)](https://numpy.org/)
 
 ## Description
 
