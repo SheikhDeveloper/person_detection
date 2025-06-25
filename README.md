@@ -5,7 +5,7 @@
 
 ## Description
 
-This repository contains the implementation of a function to detect people in the given video.
+This repository contains the implementation of a function to detect people in the given video using a pretrained [YOLOv11](https://docs.ultralytics.com/models/yolo11) model.
 With the function itself, there is a main program to run with customized input and output.
 
 ## Installation
