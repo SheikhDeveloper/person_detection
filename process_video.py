@@ -2,6 +2,7 @@ import cv2
 from ultralytics import YOLO
 import numpy as np
 from tqdm import tqdm
+import torch
 
 def process_video(in_path: str, out_path: str) -> None:
     """
@@ -27,7 +28,9 @@ def process_video(in_path: str, out_path: str) -> None:
     process_video('input.mp4', 'output.mp4')
     ```
     """
-    model = YOLO('yolo11x.pt')
+
+    device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    model = YOLO('yolo11x.pt').to(device)
     
     cap = cv2.VideoCapture(in_path)
     if not cap.isOpened():
