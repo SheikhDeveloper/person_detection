@@ -7,14 +7,27 @@ def process_video(in_path: str, out_path: str) -> None:
     """
     Process a video: detect people, draw bounding boxes and save the result.
 
+    The function uses [YOLOv11](https://docs.ultralytics.com/models/yolo11/) model to
+    detect people in the video and draw bounding boxes around them.
+
     Parameters
     ----------
     in_path : str
         Path to the input video.
     out_path : str
         Path to the output video.
+
+    Returns
+    -------
+    None
+
+    Example Usage
+    -------------
+    ```python
+    process_video('input.mp4', 'output.mp4')
+    ```
     """
-    model = YOLO('yolo12n.pt')
+    model = YOLO('yolo11x.pt')
     
     cap = cv2.VideoCapture(in_path)
     if not cap.isOpened():
