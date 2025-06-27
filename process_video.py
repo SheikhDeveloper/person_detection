@@ -4,12 +4,13 @@ import numpy as np
 from tqdm import tqdm
 import torch
 
+
 def process_video(in_path: str, out_path: str, class_label: int = 0) -> None:
     """
-    Process a video: detect people, draw bounding boxes and save the result.
+    Process a video: detect objects of specified class, draw bounding boxes and save the result.
 
     The function uses [YOLOv11](https://docs.ultralytics.com/models/yolo11/) model to
-    detect people in the video and draw bounding boxes around them.
+    detect objects in the video and draw bounding boxes around them.
 
     Parameters
     ----------
@@ -32,7 +33,7 @@ def process_video(in_path: str, out_path: str, class_label: int = 0) -> None:
     """
 
     model = YOLO('yolo11x.pt')
-    
+
     cap = cv2.VideoCapture(in_path)
     if not cap.isOpened():
         raise IOError(f'Cannot open {in_path}')
@@ -50,7 +51,11 @@ def process_video(in_path: str, out_path: str, class_label: int = 0) -> None:
         if not ret:
             break
 
-        results = model.predict(frame, classes=[class_label], conf=0.5, device='cuda:0' if torch.cuda.is_available() else 'cpu')
+        results = model.predict(
+            frame,
+            classes=[class_label],
+            conf=0.5,
+            device='cuda:0' if torch.cuda.is_available() else 'cpu')
 
         for box in results[class_label].boxes:
             confidence = box.conf[class_label]
@@ -58,7 +63,7 @@ def process_video(in_path: str, out_path: str, class_label: int = 0) -> None:
             cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
 
             label = f'Person: {confidence:.2f}'
-            cv2.putText(frame, label, (x1, y1 - 10), 
+            cv2.putText(frame, label, (x1, y1 - 10),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
 
         out.write(frame)
