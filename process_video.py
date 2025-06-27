@@ -65,4 +65,3 @@ def process_video(in_path: str, out_path: str) -> None:
 
     cap.release()
     out.release()
-    cv2.destroyAllWindows()

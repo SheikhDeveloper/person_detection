@@ -1,18 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyc
+
+# Data
 *.mp4
 *.pt
-*.zip
-*.tar
-*.tar.gz
-*.tar.bz2
-*.tar.xz
-*.tar.lzma
-*.tar.zst
-*.tar.gz
-*.tar.lz
-*.tar.zstd
-*.tar.zst
-*.tar.zstd
-*.doc
-*.docx
-*.pdf
-__pycache__
+*.onnx
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Jupyter
+.ipynb_checkpoints
+
+# Ultralytics
+runs/
