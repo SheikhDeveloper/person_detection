@@ -4,7 +4,7 @@ import numpy as np
 from tqdm import tqdm
 import torch
 
-def process_video(in_path: str, out_path: str) -> None:
+def process_video(in_path: str, out_path: str, class_label: int = 0) -> None:
     """
     Process a video: detect people, draw bounding boxes and save the result.
 
@@ -17,6 +17,8 @@ def process_video(in_path: str, out_path: str) -> None:
         Path to the input video.
     out_path : str
         Path to the output video.
+    class_label : int
+        Class label to detect(default=0, e.g. person).
 
     Returns
     -------
@@ -48,11 +50,11 @@ def process_video(in_path: str, out_path: str) -> None:
         if not ret:
             break
 
-        results = model.predict(frame, classes=[0], conf=0.5, device='cuda:0' if torch.cuda.is_available() else 'cpu')
+        results = model.predict(frame, classes=[class_label], conf=0.5, device='cuda:0' if torch.cuda.is_available() else 'cpu')
 
-        for box in results[0].boxes:
-            confidence = box.conf[0]
-            x1, y1, x2, y2 = map(int, box.xyxy[0])
+        for box in results[class_label].boxes:
+            confidence = box.conf[class_label]
+            x1, y1, x2, y2 = map(int, box.xyxy[class_label])
             cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
 
             label = f'Person: {confidence:.2f}'
