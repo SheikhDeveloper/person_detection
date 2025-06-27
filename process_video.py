@@ -29,8 +29,7 @@ def process_video(in_path: str, out_path: str) -> None:
     ```
     """
 
-    device = 'cuda' if torch.cuda.is_available() else 'cpu'
-    model = YOLO('yolo11x.pt').to(device)
+    model = YOLO('yolo11x.pt')
     
     cap = cv2.VideoCapture(in_path)
     if not cap.isOpened():
@@ -49,17 +48,16 @@ def process_video(in_path: str, out_path: str) -> None:
         if not ret:
             break
 
-        results = model(frame, classes=[0], verbose=False)
+        results = model.predict(frame, classes=[0], conf=0.5, device='cuda:0' if torch.cuda.is_available() else 'cpu')
 
         for box in results[0].boxes:
-            confidence = float(box.conf[0])
-            if confidence > 0.5:
-                x1, y1, x2, y2 = map(int, box.xyxy[0])
-                cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
+            confidence = box.conf[0]
+            x1, y1, x2, y2 = map(int, box.xyxy[0])
+            cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
 
-                label = f'Person: {confidence:.2f}'
-                cv2.putText(frame, label, (x1, y1 - 10), 
-                            cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+            label = f'Person: {confidence:.2f}'
+            cv2.putText(frame, label, (x1, y1 - 10), 
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
 
         out.write(frame)
 
