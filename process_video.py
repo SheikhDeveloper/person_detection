@@ -62,7 +62,7 @@ def process_video(in_path: str, out_path: str, class_label: int = 0) -> None:
             x1, y1, x2, y2 = map(int, box.xyxy[class_label])
             cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
 
-            label = f'Person: {confidence:.2f}'
+            label = f'{confidence:.2f}'
             cv2.putText(frame, label, (x1, y1 - 10),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
 
